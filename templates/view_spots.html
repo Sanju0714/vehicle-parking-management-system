@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}View Spots{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+<a href="{{ url_for('admin.manage_parking') }}" class="btn btn-secondary mb-3">← Back to Parking Management</a>
+    <h4 class="mb-4 text-center">Spots in {{ lot.name }}</h4>
+
+    <table class="table table-bordered table-striped text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>Spot Number</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for spot in spots %}
+            <tr>
+                <td>{{ spot.spot_number }}</td>
+                <td>
+                    {% if spot.is_available %}
+                        <span class="badge bg-success">Available</span>
+                    {% else %}
+                        <span class="badge bg-danger">Occupied</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if spot.is_available %}
+                        <a href="{{ url_for('admin.delete_spot', spot_id=spot.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this spot?')">Delete</a>
+                    {% else %}
+                        <a href="{{ url_for('admin.occupied_spot_user', spot_id=spot.id) }}" class="btn btn-sm btn-info">View User</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+

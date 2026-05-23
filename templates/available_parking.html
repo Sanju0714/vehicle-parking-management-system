@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Available Parking Lots{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-4">Available Parking Lots</h2>
+  <a href="{{ url_for('user.user_dashboard') }}" class="btn btn-secondary mb-3">← Back to Dashboard</a>
+
+  {% if lots %}
+    <div class="row">
+      {% for lot in lots %}
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">{{ lot.name }}</h5>
+            <p><strong>Address:</strong> {{ lot.address }}</p>
+            <p><strong>Pin Code:</strong> {{ lot.pin_code }}</p>
+            <p><strong>Price/Hour:</strong> ₹{{ lot.price_per_hour }}</p>
+            <a href="{{ url_for('user.book', lot_id=lot.id) }}" class="btn btn-primary">Book Spot</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info">No parking lots available right now.</div>
+  {% endif %}
+</div>
+{% endblock %}
+

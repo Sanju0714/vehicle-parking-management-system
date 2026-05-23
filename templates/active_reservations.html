@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Active Reservations{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-4">Active Reservations</h2>
+  <a href="{{ url_for('user.user_dashboard') }}" class="btn btn-secondary mb-3">← Back to Dashboard</a>
+
+  {% if active %}
+    <table class="table table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>Parking Lot</th>
+          <th>Spot Number</th>
+          <th>Vehicle Number</th>
+          <th>Start Time</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in active %}
+        <tr>
+          <td>{{ r.lot.name }}</td>
+          <td>{{ r.spot.spot_number }}</td>
+          <td>{{ r.vehicle_number }}</td>
+          <td>{{ r.start_time.strftime('%Y-%m-%d %H:%M') }}</td>
+          <td>
+            <form action="{{ url_for('user.vacate_reservation', reservation_id=r.id) }}" method="POST" onsubmit="return confirm('Are you sure you want to vacate this spot?');">
+              <button type="submit" class="btn btn-danger btn-sm">Vacate</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="alert alert-info">You have no active reservations currently.</div>
+  {% endif %}
+</div>
+{% endblock %}
+

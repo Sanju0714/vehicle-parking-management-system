@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}User Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Welcome, {{ user.full_name }}</h2>
+    <div class="row g-3">
+        <div class="col-md-4">
+            <a href="{{ url_for('user.view_available_parking') }}" class="btn btn-success w-100">Book Parking Lot</a>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ url_for('user.active_reservations') }}" class="btn btn-info w-100">Active Reservations</a>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ url_for('user.reservation_history') }}" class="btn btn-primary w-100">Reservation History</a>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ url_for('user.user_summary') }}" class="btn btn-secondary w-100">Summary</a>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ url_for('user.edit_profile') }}" class="btn btn-warning w-100">Edit Profile</a>
+        </div>
+        <div class="col-md-4">
+            <a href="{{ url_for('auth.logout') }}" class="btn btn-danger w-100">Logout</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

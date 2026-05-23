@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}User Details{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h4 class="mb-4">User Details for Spot - {{ spot.spot_number }} in {{ spot.lot.name }}</h4>
+
+    <div class="card p-4 shadow">
+        <p><strong>Name:</strong> {{ user.full_name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Phone:</strong> {{ user.phone }}</p>
+        <p><strong>Pin Code:</strong> {{ user.pin_code }}</p>
+        <p><strong>Vehicle Number:</strong> {{ reservation.vehicle_number }}</p>
+        <p><strong>Start Time:</strong> {{ reservation.start_time.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+        <a href="{{ url_for('admin.view_spots', lot_id=spot.lot.id) }}" class="btn btn-secondary mt-3">Back to Spots</a>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}My History{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Parking History</h2>
+
+  {% if reservations %}
+  <table class="table table-striped mt-3">
+    <thead>
+      <tr>
+        <th>Spot ID</th>
+        <th>Lot</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Duration (hrs)</th>
+        <th>Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for res in reservations %}
+      <tr>
+        <td>{{ res.spot.id }}</td>
+        <td>{{ res.spot.lot.location }}</td>
+        <td>{{ res.start_time }}</td>
+        <td>{{ res.end_time }}</td>
+        <td>{{ ((res.end_time - res.start_time).total_seconds() / 3600) | round(2) }}</td>
+        <td>₹{{ res.cost }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="alert alert-info mt-3">You have no past reservations.</div>
+  {% endif %}
+</div>
+{% endblock %}
+

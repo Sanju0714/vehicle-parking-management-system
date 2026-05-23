@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Edit Profile</h1>
+    <form method="POST">
+        <div class="form-group">
+            <h5><label for="name">Full Name:</label></h5>  
+            <input type="text" name="name" class="form-control" value="{{ user.full_name }}" required>
+        </div>
+
+        <div class="form-group">
+            <h5><label for="address">Address:</label></h5>
+            <input type="text" name="address" class="form-control" value="{{ user.address }}" required>
+        </div>
+
+        <div class="form-group">
+            <h5><label for="pin_code">Pin Code:</label></h5>
+            <input type="text" name="pin_code" class="form-control" value="{{ user.pin_code }}" required>
+        </div>
+
+        <div class="form-group">
+            <h5><label for="phone">Phone Number:</label></h5>
+            <input type="text" name="phone" class="form-control" value="{{ user.phone }}" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Update Profile</button>
+        <a href="{{ url_for('user.user_dashboard') }}" class="btn btn-danger mt-3 ml-2">Cancel</a>
+    </form>
+</div>
+{% endblock %}
+

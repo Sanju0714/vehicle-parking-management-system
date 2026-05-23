@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5 text-center">
+    <h2 class="mb-4">Revenue Summary (Per Lot and User)</h2>
+    <img src="data:image/png;base64,{{ bar_graph }}" class="img-fluid" alt="Stacked Revenue Chart">
+</div>
+<div class="mt-4">
+  <a href="{{ url_for('admin.dashboard_admin') }}" class="btn btn-primary">Back to Dashboard</a>
+</div>
+{% endblock %}
+

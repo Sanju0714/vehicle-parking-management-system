@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Book Spot{% endblock %}
+{% block content %}
+<div class="container mt-5">
+  <h2>Book a Spot in {{ lot.location }}</h2>
+
+  {% if spot %}
+  <p><strong>Spot ID:</strong> {{ spot.id }}</p>
+  <p><strong>Price:</strong> ₹{{ lot.price_per_hour }}/hour</p>
+
+  <form method="POST">
+    <button type="submit" class="btn btn-success">Confirm Booking</button>
+    <a href="{{ url_for('user.dashboard') }}" class="btn btn-secondary">Cancel</a>
+  </form>
+  {% else %}
+  <div class="alert alert-warning">
+    No available spots in this parking lot.
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
+

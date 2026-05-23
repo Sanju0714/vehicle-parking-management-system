@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="container mt-5" style="max-width: 550px;">
+  <h2 class="text-center mb-4">Register</h2>
+  <form method="POST" autocomplete="on">
+    <div class="mb-3">
+      <label>Full Name</label>
+      <input name="full_name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label>Email</label>
+      <input name="email" type="email" class="form-control" autocomplete="email" required>
+    </div>
+    <div class="mb-3">
+      <label>Password</label>
+      <div class="input-group">
+        <input name="password" id="reg_password" type="password" class="form-control" autocomplete="new-password" required>
+        <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('reg_password', this)">
+          <i class="fas fa-eye-slash"></i>
+        </button>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label>Address</label>
+      <input name="address" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label>Pin Code</label>
+      <input name="pin_code" type="text" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label>Phone Number</label>
+      <input name="phone" type="text" class="form-control" required>
+    </div>
+    <button class="btn btn-success w-100">Register</button>
+    <div class="text-center mt-3">
+      <a href="{{ url_for('auth.login') }}">Already registered? Login here</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
+

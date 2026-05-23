@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}My Reservation History{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-4">My Reservation History</h2>
+  <a href="{{ url_for('user.user_dashboard') }}" class="btn btn-secondary mb-3">← Back to Dashboard</a>
+
+  {% if reservations %}
+    <table class="table table-bordered table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>Parking Lot</th>
+          <th>Vehicle Number</th>
+          <th>Spot Number</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>Status</th>
+          <th>Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in reservations %}
+        <tr>
+          <td>{{ r.lot.name }}</td>
+          <td>{{ r.vehicle_number or '-' }}</td>
+          <td>{{ r.spot.spot_number }}</td>
+          <td>{{ r.start_time.strftime('%Y-%m-%d %H:%M') }}</td>
+          <td>
+            {% if r.end_time %}
+              {{ r.end_time.strftime('%Y-%m-%d %H:%M') }}
+            {% else %}
+              Ongoing
+            {% endif %}
+          </td>
+          <td>
+            {% if r.end_time %}
+              <span class="badge bg-success">Completed</span>
+            {% else %}
+              <span class="badge bg-warning text-dark">Active</span>
+            {% endif %}
+          </td>
+          <td>
+            {% if r.cost %}
+              ₹{{ r.cost }}
+            {% else %}
+              -
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="alert alert-info">You have no reservations yet.</div>
+  {% endif %}
+</div>
+{% endblock %}
+

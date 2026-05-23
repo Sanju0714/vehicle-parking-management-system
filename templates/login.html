@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div class="container mt-5" style="max-width: 500px;">
+  <h2 class="text-center mb-4">Login</h2>
+  <form method="POST" action="{{ url_for('auth.login') }}" autocomplete="on">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" name="email" id="email" class="form-control" autocomplete="username" required>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <div class="input-group">
+        <input type="password" name="password" id="password" class="form-control" autocomplete="current-password" required>
+        <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('password', this)">
+          <i class="fas fa-eye-slash"></i>
+        </button>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Login</button>
+    <div class="text-center mt-3">
+      <a href="{{ url_for('auth.register') }}">New user? Register here</a>
+    </div>
+  </form>
+</div>
+{% endblock %}
+

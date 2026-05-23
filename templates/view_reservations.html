@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}All Reservations{% endblock %}
+{% block content %}
+<div class="container mt-5">
+  <h2>All User Reservations</h2>
+
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Spot</th>
+        <th>Lot</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Duration (hrs)</th>
+        <th>Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for res in reservations %}
+      <tr>
+        <td>{{ res.user.full_name }}</td>
+        <td>{{ res.spot.id }}</td>
+        <td>{{ res.spot.lot.location }}</td>
+        <td>{{ res.start_time }}</td>
+        <td>{{ res.end_time }}</td>
+        <td>{{ ((res.end_time - res.start_time).total_seconds() / 3600) | round(2) }}</td>
+        <td>₹{{ res.cost }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+

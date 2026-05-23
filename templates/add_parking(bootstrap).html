@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Parking Lot{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Add New Parking Lot</h2>
+
+    <form method="POST" action="{{ url_for('admin.add_parking') }}" class="card p-4 shadow">
+        <div class="mb-3">
+            <label for="name" class="form-label">Lot Name</label>
+            <input type="text" class="form-control" id="name" name="name" required placeholder="Enter parking lot name">
+        </div>
+
+        <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <textarea class="form-control" id="address" name="address" rows="2" required placeholder="Enter parking lot address"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="pin_code" class="form-label">Pin Code</label>
+            <input type="text" class="form-control" id="pin_code" name="pin_code" required pattern="\d{6}" placeholder="Enter 6-digit pin code">
+        </div>
+
+        <div class="mb-3">
+            <label for="price_per_hour" class="form-label">Price per Hour (₹)</label>
+            <input type="number" class="form-control" id="price_per_hour" name="price_per_hour" step="0.01" required placeholder="E.g., 50.00">
+        </div>
+
+        <div class="mb-3">
+            <label for="max_spots" class="form-label">Maximum Spots</label>
+            <input type="number" class="form-control" id="max_spots" name="max_spots" required min="1" placeholder="E.g., 20">
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Add Parking Lot</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+

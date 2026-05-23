@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Release Spot{% endblock %}
+{% block content %}
+<div class="container mt-5">
+  <h2>Release Spot</h2>
+  <p>Are you sure you want to release your reservation for:</p>
+
+  <ul>
+    <li><strong>Spot:</strong> {{ reservation.spot.id }}</li>
+    <li><strong>Lot:</strong> {{ reservation.spot.lot.location }}</li>
+    <li><strong>Start Time:</strong> {{ reservation.start_time }}</li>
+  </ul>
+
+  <form method="POST">
+    <button type="submit" class="btn btn-danger">Confirm Release</button>
+    <a href="{{ url_for('user.dashboard') }}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock %}
+
