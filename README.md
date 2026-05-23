@@ -126,7 +126,7 @@ The application uses SQLAlchemy ORM with normalized database schema design for:
 
 ## Documentation
 
-For a more detailed explanation of the project architecture, database schema, implementation, and functionalities, please refer to the ## project report included in the repository.
+For a more detailed explanation of the project architecture, database schema, implementation, and functionalities, please refer to the project report included in the repository.
 
 ---
 
